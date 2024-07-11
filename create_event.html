@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CreateEvent</title>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="create_event.html">Create Event</a></li>
+                <li><a href="#settings">Events</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#logout">Logout</a></li>
+            </ul>
+        </aside>
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Create Event</h2>
+        </div>
+        <main class="modal-content">
+            <fieldset>
+                <label for="title">Title</label>
+                <div class="input-tag">
+                    <button class="btn add"><i class="ri-add-line"></i>Add description</button>
+                    <input type="text" placeholder="Event title">
+                </div>
+            </fieldset>
+            <div class="timing">
+                <fieldset>
+                    <label for="date">Date</label>
+                    <div class="input-icon">
+                        <i class="ri-calendar-line"></i>
+                        <input type="text" value="Jul 14, 2021" >
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <label for="date">Time</label>
+                    <div class="input-icon">
+                        <i class="ri-time-line"></i>
+                        <input type="text" value="02:00 PM" >
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <label for="date">Duration</label>
+                    <div class="input-icon">
+                        <div class="numerate">
+                            <i class="ri-arrow-up-s-fill"></i>
+                            <i class="ri-arrow-down-s-fill"></i>
+                        </div>
+                        <input type="text" value="1h 45m" >
+                    </div>
+                </fieldset>
+            </div>
+            <small><i class="ri-checkbox-circle-fill"></i>This event will take place on the July 14, 2021 from 02:00 PM until 03:45 PM</small>
+            <fieldset>
+                <label for="title">Location</label>
+                <div class="input-tag">
+                    <button class="btn add"><i class="ri-add-line"></i>Set meeting room</button>
+                    <input type="text"  placeholder="Location">
+                </div>
+            </fieldset>
+            <div class="divider-dashed"></div>
+        
+          
+            
+           
+        <footer>
+            <button class="btn primary">Create Event</button>
+        </footer>
+    </div>
+</body>
+</html>

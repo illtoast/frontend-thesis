@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="form-container">
+        <!-- Login Form -->
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="show-signup">Sign up here</a></p>
+        </div>
+
+        <!-- Sign-Up Form -->
+        <div class="signup-container" id="signup-container" style="display: none;">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-signup">Password</label>
+                    <input type="password" id="password-signup" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('show-signup').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.login-container').style.display = 'none';
+            document.getElementById('signup-container').style.display = 'block';
+        });
+
+        document.getElementById('show-login').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.login-container').style.display = 'block';
+            document.getElementById('signup-container').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
