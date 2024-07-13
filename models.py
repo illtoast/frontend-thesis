@@ -11,6 +11,7 @@ class Students(Base):
     course = Column(String)
     year_level = Column(String)
     section = Column(String)
+    gender = Column(String)
 
 class Events(Base):
     __tablename__ = "events"

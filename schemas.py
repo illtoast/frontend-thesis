@@ -7,6 +7,7 @@ class StudentBase(BaseModel):
     course:str
     year_level:str
     section:str
+    gender:str
 
 class StudentCreate(StudentBase):
     pass

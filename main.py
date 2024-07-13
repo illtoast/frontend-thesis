@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Form, Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse ,FileResponse
 import os
@@ -133,8 +133,18 @@ def get_db():
         db.close()
         
         
+# @app.post("/students/", response_model=schemas.Student)
+# def create_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
+#     return crud.create_student(db=db, student=student)
+
 @app.post("/students/", response_model=schemas.Student)
-def create_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
+def create_student(first_name: str = Form(...), last_name: str = Form(...), 
+    student_id: str = Form(...), section: str = Form(...), course: str = Form(...),
+    year_level: str = Form(...), gender: str = Form(...),
+    db: Session = Depends(get_db)):
+    student = schemas.StudentCreate(student_id=student_id, first_name=first_name,
+        last_name=last_name, section=section, year_level=year_level, course=course,
+        gender=gender)
     return crud.create_student(db=db, student=student)
 
 @app.get("/students/{item_id}", response_model=schemas.Student)
@@ -143,6 +153,9 @@ def read_item(student_id: str, db: Session = Depends(get_db)):
     if db_student is None:
         raise HTTPException(status_code=404, detail="Student not found")
     return db_student
+
+
+
 
 @app.get("/students/", response_model=list[schemas.Student])
 def read_students(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
