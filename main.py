@@ -1,6 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse ,FileResponse
 import os
+import crud
+import models
+import schemas
+from database import SessionLocal, engine
+
 
 app = FastAPI()
 
@@ -118,7 +124,31 @@ async def readroot():
     return HTMLResponse(content=html_content)
 
 # API
+models.Base.metadata.create_all(bind=engine)
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+        
+        
+@app.post("/students/", response_model=schemas.Student)
+def create_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
+    return crud.create_student(db=db, student=student)
 
+@app.get("/students/{item_id}", response_model=schemas.Student)
+def read_item(student_id: str, db: Session = Depends(get_db)):
+    db_student = crud.get_student(db, student_id=student_id)
+    if db_student is None:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return db_student
+
+@app.get("/students/", response_model=list[schemas.Student])
+def read_students(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    students = crud.get_students(db, skip=skip, limit=limit)
+    return students  
+        
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
