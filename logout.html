@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+    <title>Logout</title>
+</head>
+<body>
+    <div class="form-container">
+        <!-- Logout Form -->
+        <div class="login-container">
+            <h2>Logout</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Student ID</label>
+                    <input type="text" id="BarcodeInput" name="barcode" required>
+                </div>
+               
+                <button type="submit">Logout</button>
+           
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+              Quagga.init({
+                inputStream: {
+                  name: "Live",
+                  type: "LiveStream",
+                  target: document.querySelector('#barcodeScanner')    // Or '#yourElement' (optional)
+                },
+                decoder: {
+                  readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
+                }
+              }, function (err) {
+                if (err) {
+                  console.log(err);
+                  return;
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+              });
+          
+              Quagga.onDetected(function (data) {
+                var code = data.codeResult.code;
+                document.getElementById('barcodeInput').value = code;
+                Quagga.stop();
+              });
+            });
+          </script>
+          
+
+        <!-- Sign-Up Form -->
+        
+    </div>
+
+    <script>
+
+        document.getElementById('show-login').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.login-container').style.display = 'block';
+            document.getElementById('signup-container').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
