@@ -63,6 +63,20 @@ async def readroot():
    
     return HTMLResponse(content=html_content)
 
+@app.get("/logout.html")
+async def readroot():
+    # Get the directory of the current script
+    current_directory = os.path.dirname(__file__)
+    # Construct the full path to the HTML file
+    file_path = os.path.join(current_directory, "logout.html")
+
+    # Read the HTML file content
+    with open(file_path, "r") as file:
+        html_content = file.read()
+
+   
+    return HTMLResponse(content=html_content)
+
 @app.get("/index.html")
 async def readroot():
     # Get the directory of the current script
