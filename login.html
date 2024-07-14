@@ -6,16 +6,22 @@
     <link rel="stylesheet" href="login.css">
     <title>Login</title>
     <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+
+    <script>
+      function autoSubmitForm() {
+          document.getElementById('login-form').submit();
+      }
+  </script>
 </head>
 <body>
     <div class="form-container">
         <!-- Login Form -->
         <div class="login-container">
             <h2>Login</h2>
-            <form id="login-form">
+            <form id="login-form" action="/event-barcode-in" method="post">
                 <div class="form-group">
-                    <label for="username">Student ID</label>
-                    <input type="text" id="BarcodeInput" name="barcode" required>
+                    <label for="student_id">Student ID</label>
+                    <input type="text"  id="student_id" name="student_id"  oninput="autoSubmitForm()" required>
                 </div>
                
                 <button type="submit">Login</button>

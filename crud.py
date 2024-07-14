@@ -3,7 +3,7 @@ import models
 import schemas
 
 def get_student(db: Session, student_id: str):
-    return db.query(models.Students).filter(models.Students.id == student_id).first()
+    return db.query(models.Students).filter(models.Students.student_id == student_id).first()
 
 def get_students(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.Students).offset(skip).limit(limit).all()

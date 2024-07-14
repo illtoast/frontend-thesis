@@ -147,7 +147,7 @@ def create_student(first_name: str = Form(...), last_name: str = Form(...),
         gender=gender)
     return crud.create_student(db=db, student=student)
 
-@app.get("/students/{item_id}", response_model=schemas.Student)
+@app.get("/students/{student_id}", response_model=schemas.Student)
 def read_item(student_id: str, db: Session = Depends(get_db)):
     db_student = crud.get_student(db, student_id=student_id)
     if db_student is None:
@@ -162,6 +162,10 @@ def read_students(skip: int = 0, limit: int = 10, db: Session = Depends(get_db))
     students = crud.get_students(db, skip=skip, limit=limit)
     return students  
         
+@app.post("/event-barcode-in/")
+def event_barcode_in(  student_id: str = Form(...)):
+    print(student_id)
+    return "Successfully logged in"
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
