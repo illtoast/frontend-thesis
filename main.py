@@ -1,11 +1,12 @@
 from fastapi import FastAPI, Form, Depends, HTTPException
 from sqlalchemy.orm import Session
-from fastapi.responses import HTMLResponse ,FileResponse
+from fastapi.responses import HTMLResponse ,FileResponse, RedirectResponse
 import os
 import crud
 import models
 import schemas
 from database import SessionLocal, engine
+import datetime
 
 
 app = FastAPI()
@@ -56,7 +57,7 @@ def get_bg_tile():
     return FileResponse("login.css")
 
 @app.get("/login.html")
-async def readroot():
+async def login():
     # Get the directory of the current script
     current_directory = os.path.dirname(__file__)
     # Construct the full path to the HTML file
@@ -139,11 +140,11 @@ def get_db():
 
 @app.post("/students/", response_model=schemas.Student)
 def create_student(first_name: str = Form(...), last_name: str = Form(...), 
-    student_id: str = Form(...), section: str = Form(...), course: str = Form(...),
+    student_id: str = Form(...), middle_initial: str = Form(...), course: str = Form(...),
     year_level: str = Form(...), gender: str = Form(...),
     db: Session = Depends(get_db)):
     student = schemas.StudentCreate(student_id=student_id, first_name=first_name,
-        last_name=last_name, section=section, year_level=year_level, course=course,
+        last_name=last_name, middle_intial=middle_initial, year_level=year_level, course=course,
         gender=gender)
     return crud.create_student(db=db, student=student)
 
@@ -163,9 +164,22 @@ def read_students(skip: int = 0, limit: int = 10, db: Session = Depends(get_db))
     return students  
         
 @app.post("/event-barcode-in/")
-def event_barcode_in(  student_id: str = Form(...)):
+async def event_barcode_in(  student_id: str = Form(...)):
     print(student_id)
-    return "Successfully logged in"
+    return RedirectResponse(url="http://localhost:8000/login.html")
+
+
+
+
+@app.post("/event-sensor-in/")
+def event_sensor_in():
+    print("sensor detected")
+    return datetime.now()
+
+
+
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

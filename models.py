@@ -8,7 +8,7 @@ class Students(Base):
     student_id = Column(String, index=True)
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
-    course = Column(String)
+    middle_initial = Column(String)
     year_level = Column(String)
     section = Column(String)
     gender = Column(String)

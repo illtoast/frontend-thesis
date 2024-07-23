@@ -4,7 +4,7 @@ class StudentBase(BaseModel):
     student_id :str
     first_name: str
     last_name: str
-    course:str
+    middle_initial:str
     year_level:str
     section:str
     gender:str

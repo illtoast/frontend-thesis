@@ -5,6 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="event.css">
     <title>CreateEvent</title>
+    <style>
+        .form-box {
+            width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f5f5f5;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            
+            height: fit-content;
+        }
+        .form-box h1 {
+            margin-bottom: 20px;
+           
+        }
+       
+        
+        #eventForm input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #eventForm input[type="reset"]{
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #eventForm input[type="submit"]:hover {
+            background-color: #45a049;
+        
+        }
+        #eventForm input[type="reset"]:hover {
+            background-color: #f44336e1;
+        }
+        #eventForm input[type="text"], #eventForm input[type="date"], #eventForm input[type="time"] {
+            width: 75%;
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;   
+            margin-bottom: 10px;
+            border-radius: 7px;
+            
+        }
+        #eventForm label{
+            padding-left: 10px;
+            display: flex;
+            justify-items: flex-start;
+            
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,62 +78,47 @@
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="register.html">Register</a></li>
                 <li><a href="create_event.html">Create Event</a></li>
-                <li><a href="#settings">Events</a></li>
+               
                 <li><a href="login.html">Login</a></li>
                 <li><a href="logout.html">Logout</a></li>
             </ul>
         </aside>
-        <div class="modal">
-            <div class="modal-header">
-                <h2>Create Event</h2>
-            </div>
-            <main class="modal-content">
-                <fieldset>
-                    <label for="title">Title</label>
-                    <div class="input-tag">
-                        <input type="text"  placeholder="Event title">
-                    </div>
-                </fieldset>
-                <div class="timing">
-                    <fieldset>
-                        <label for="date">Date</label>
-                        <div class="input-icon">
-                            <i class="ri-calendar-line"></i>
-                            <input type="date" placeholder="Jul 14, 2021">
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <label for="date">Time</label>
-                        <div class="input-icon">
-                            <i class="ri-time-line"></i>
-                            <input type="time" value="02:00 PM" >
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <label for="date">Duration</label>
-                        <div class="input-icon">
-                            <div class="numerate">
-                                <i class="ri-arrow-up-s-fill"></i>
-                                <i class="ri-arrow-down-s-fill"></i>
-                            </div>
-                            <input type="number" placeholder="1h 45m">
-                        </div>
-                    </fieldset>
-                </div>
-                
-                <fieldset>
-                    <label for="title">Location</label>
-                    <div class="input-tag">
-                        <input type="text" placeholder="Location">
-                    </div>
-                </fieldset>
-                
-                
-               
-            <footer>
-                <button class="btn primary">Create Event</button>
-            </footer>
-        </div>
+    <div class="form-box">
+            <form action="" id="eventForm">
+                <h3>Create Event</h3>
+                <label for="title">Event Title:</label>
+                <input type="text" id="title" name="title" required><br><br>
+                <label for="description">Event Description:</label>
+                <input type="text" id="description" name="description" required><br><br>
+                <label for="date">Event Date:</label>
+                <input type="date" id="date" name="date" required><br><br>
+                <label for="time">Event Time:</label>
+                <input type="time" id="time" name="time" required><br><br>
+                <input type="submit" value="Create Event">
+                <input type="reset" value="Clear">    
+            </form>
+    </div> 
+        <script>
+            document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+        
+            // Get form data
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            
+        
+        
+            // Store data in local storage
+            localStorage.setItem('title', title);
+            localStorage.setItem('description', description);
+            localStorage.setItem('date', date);
+            localStorage.setItem('time', time);
+        
+            // Redirect to the event details page
+            window.location.href = 'index.html';
+        });
+        </script>
 </body>
 </html>

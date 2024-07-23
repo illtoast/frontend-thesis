@@ -14,38 +14,38 @@
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="register.html">Register</a></li>
                 <li><a href="create_event.html">Create Event</a></li>
-                <li><a href="#settings">Events</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="logout.html">Logout</a></li>
             </ul>
         </aside>
 
         <div class="form-container">
-            <h2>Registration Form</h2>
+            
             <form id="registration-form" action="/students" method="post">
+                <h2>Registration Form</h2>
                 <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input type="text" id="first_name" name="first_name" required>
+                    <input type="text" id="first_name" name="first_name" placeholder="John" required>
                 </div>
                 <div class="form-group">
                     <label for="last_name">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" required>
+                    <input type="text" id="last_name" name="last_name" placeholder="Doe" required>
                 </div>
                 <div class="form-group">
                     <label for="student_id">School ID</label>
-                    <input type="text" id="student_id" name="student_id" required>
+                    <input type="text" id="student_id" name="student_id" placeholder="SU202000423">
                 </div>
                 <div class="form-group">
-                    <label for="section">Section</label>
-                    <input type="text" id="section" name="section" required>
+                    <label for="middle_initial">Middle Initial</label>
+                    <input type="text" id="middle_initial" name="middle_initial" placeholder="ex: G." required>
                 </div>
                 <div class="form-group">
                     <label for="course">Course</label>
-                    <input type="text" id="course" name="course" required>
+                    <input type="text" id="course" name="course" placeholder="ex: BSIT" required>
                 </div>
                 <div class="form-group">
                     <label for="year_level">Year level</label>
-                    <input type="text" id="year_level" name="year_level" required>
+                    <input type="text" id="year_level" name="year_level" placeholder="ex: III">
                 </div>                
                 <div class="form-group">
                     <label>Gender</label>

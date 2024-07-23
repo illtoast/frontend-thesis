@@ -23,6 +23,7 @@ body {
 .sidebar h2 {
     margin: 0 0 20px;
     font-size: 24px;
+    align-items: self-start;
 }
 
 .sidebar ul {
@@ -81,9 +82,7 @@ header h1 {
     border-radius: 4px;
 }
 
-.content h2 {
-    margin-top: 0;
-}
+
 
 @media (max-width: 768px) {
     .container {
@@ -116,16 +115,22 @@ header h1 {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: solid 1px rgb(167, 167, 167);
 }
 
-h2 {
+.container #sidebar h2 {
     margin-top: 0;
-    text-align: center;
+   
 }
 
 .form-group {
     margin-bottom: 15px;
+    width: 500px;
 }
 
 .form-group label {
@@ -134,7 +139,7 @@ h2 {
 }
 
 .form-group input[type="text"],
-.form-group input[type="email"] {
+.form-group input[type="radio"] {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
@@ -148,13 +153,12 @@ h2 {
 }
 
 .radio-group label {
-    flex: 1;
     display: flex;
     align-items: center;
 }
 
 .radio-group input[type="radio"] {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 button {
