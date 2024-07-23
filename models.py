@@ -10,7 +10,7 @@ class Students(Base):
     last_name = Column(String, index=True)
     middle_initial = Column(String)
     year_level = Column(String)
-    section = Column(String)
+    # section = Column(String)
     gender = Column(String)
 
 class Events(Base):

@@ -141,11 +141,14 @@ def get_db():
 @app.post("/students/", response_model=schemas.Student)
 def create_student(first_name: str = Form(...), last_name: str = Form(...), 
     student_id: str = Form(...), middle_initial: str = Form(...), course: str = Form(...),
-    year_level: str = Form(...), gender: str = Form(...),
+    year_level: str = Form(...), gender: str = Form(...), 
     db: Session = Depends(get_db)):
+    print(middle_initial)
+    print(gender)
     student = schemas.StudentCreate(student_id=student_id, first_name=first_name,
-        last_name=last_name, middle_intial=middle_initial, year_level=year_level, course=course,
+        last_name=last_name, middle_initial=middle_initial, year_level=year_level, course=course,
         gender=gender)
+    print(student)
     return crud.create_student(db=db, student=student)
 
 @app.get("/students/{student_id}", response_model=schemas.Student)
