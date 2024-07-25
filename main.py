@@ -159,6 +159,38 @@ def read_item(student_id: str, db: Session = Depends(get_db)):
     return db_student
 
 
+@app.get("/student-dashboard.html")
+def read_students(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    # Get the directory of the current script
+    current_directory = os.path.dirname(__file__)
+    # Construct the full path to the HTML file
+    file_path = os.path.join(current_directory, "student-dashboard.html")
+
+    # Read the HTML file content
+    
+    with open(file_path, "r") as file:
+        html_content = file.read()
+        
+    student_rows=""""""
+    for  student in list(students):
+        first_name=student.first_name
+        last_name=student.last_name
+        student_rows+= f"""<tr>
+        <td>{first_name}</td>
+        <td>{last_name}</td>
+        </tr>"""
+    html_table=f"""<table>
+    <tr>
+    <td>First Name</td>
+    <td>Last Name</td>
+    </tr>
+    {student_rows}
+    </table>
+    """
+    
+    # html = dashboard_students(students=students)
+    # print (html)
+    return HTMLResponse(content=html_content.replace("<table></table>" , html_table))
 
 
 @app.get("/students/", response_model=list[schemas.Student])
